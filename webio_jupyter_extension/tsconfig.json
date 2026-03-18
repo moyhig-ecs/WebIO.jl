@@ -14,13 +14,19 @@
     "preserveWatchOutput": true,
     "resolveJsonModule": true,
     "outDir": "./lib",
-    "rootDir": "./webio-jupyter-labextension",
-    "strict": true,
-    "strictNullChecks": true,
+    "rootDir": "..",
+    "strict": false,
+    "strictNullChecks": false,
+    "baseUrl": "./",
+    "paths": {
+      "@webio/webio": ["../packages/webio/src/index.ts"]
+    },
     "target": "es2017",
     "types": [],
-    "importsNotUsedAsValues": "error",
+    "ignoreDeprecations": "5.0",
+    "noImplicitAny": false,
+    "noUnusedLocals": false,
     "skipLibCheck": true
   },
-  "include": ["webio-jupyter-labextension/*"]
+  "include": ["webio-jupyter-labextension/*", "../packages/webio/src/**/*"]
 }

@@ -12,7 +12,7 @@ const externals = Object.fromEntries(
 );
 
 module.exports = {
-  entry: "./lib/labextension.js",
+  entry: require('path').resolve(__dirname, 'lib/webio_jupyter_extension/webio-jupyter-labextension/labextension.js'),
   output: {
     filename: "labextension.js",
     library: {
@@ -22,7 +22,11 @@ module.exports = {
   resolve: {
     fallback: {
       fs: false
-    }
+    },
+    alias: {
+      '@webio/webio': require('path').resolve(__dirname, '../packages/webio/dist/index.js')
+    },
+    extensions: ['.ts', '.js', '.json']
   },
   externals,
 };

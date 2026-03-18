@@ -1,0 +1,9 @@
+{
+    "name": "@webio/jupyter-extension",
+    "version": "0.8.0",
+    "private": true,
+    "main": "lib/webio_jupyter_extension/webio-jupyter-labextension/labextension.js",
+    "scripts": {
+        "build": "tsc -p . && webpack --config ../webpack.labextension.js"
+    }
+}
