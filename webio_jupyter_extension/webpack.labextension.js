@@ -23,19 +23,7 @@ module.exports = {
   // Ignore parse failures coming from dependencies' source maps (e.g. systemjs).
   ignoreWarnings: [/Failed to parse source map/, /source-map-loader/],
   module: {
-    rules: [
-      {
-        test: /\.js$/,
-        enforce: 'pre',
-        use: ['source-map-loader'],
-        // Only run on our packaged lib/dist files to avoid parsing third-party
-        // source maps under node_modules which often contain invalid entries.
-        include: [
-          path.resolve(__dirname, 'lib'),
-          path.resolve(__dirname, '../packages/webio/dist'),
-        ],
-      },
-    ],
+    rules: [],
   },
   entry: require('path').resolve(__dirname, 'lib/webio_jupyter_extension/webio-jupyter-labextension/labextension.js'),
   output: {
@@ -43,6 +31,18 @@ module.exports = {
     library: {
       type: 'umd'
     }
+  },
+  // Reduce verbosity in build output to avoid dumping compiled module sources
+  // (prevents large "Module parse failed" details from showing full source).
+  stats: {
+    errorDetails: false,
+    warnings: true,
+    errors: true,
+    modules: false,
+    children: false,
+  },
+  infrastructureLogging: {
+    level: 'error'
   },
   resolve: {
     fallback: {

@@ -10,17 +10,7 @@ module.exports = {
   // Ignore parse failures coming from dependencies' source maps (e.g. systemjs).
   ignoreWarnings: [/Failed to parse source map/, /source-map-loader/],
   module: {
-    rules: [
-      {
-        test: /\.js$/,
-        enforce: 'pre',
-        use: ['source-map-loader'],
-        include: [
-          path.resolve(__dirname, 'webio-jupyter-nbextension'),
-          path.resolve(__dirname, '../packages/webio/dist'),
-        ],
-      },
-    ],
+    rules: [],
   },
   entry: "./webio-jupyter-nbextension/nbextension.js",
   output: {
@@ -29,6 +19,17 @@ module.exports = {
     library: {
       type: 'umd'
     }
+  },
+  // Reduce verbosity in build output to avoid dumping compiled module sources
+  stats: {
+    errorDetails: false,
+    warnings: true,
+    errors: true,
+    modules: false,
+    children: false,
+  },
+  infrastructureLogging: {
+    level: 'error'
   },
   resolve: {
     fallback: {
