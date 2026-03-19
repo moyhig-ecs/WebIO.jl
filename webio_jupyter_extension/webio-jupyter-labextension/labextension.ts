@@ -174,7 +174,7 @@ class WebIONotebookManager {
       throw new Error("Session is ready but kernel isn't available!");
     }
     log(
-      `WebIONotebookManager¬connect: Notebook kernel is ready; status is ${kernel.status}.`,
+      `WebIONotebookManager¬getKernel: Notebook kernel is ready; id=${kernel.id}, status=${kernel.status}.`,
     );
     return kernel;
   }
@@ -226,10 +226,23 @@ class WebIONotebookManager {
   }
 
   private getWebIOMetadata(): WebIONotebookMetadata {
+    
     if (!this.notebook.model) {
+      
       throw new Error("Notebook model is not available!");
     }
-    return ((this.notebook.model.metadata as any).get(WEBIO_METADATA_KEY) || {}) as any;
+    const meta: any = (this.notebook.model.metadata as any) || {};
+    let raw: any;
+    if (meta && typeof meta.get === "function") {
+      // IObservableJSON-like API
+      raw = meta.get(WEBIO_METADATA_KEY);
+    } else {
+      // Plain object
+      raw = meta[WEBIO_METADATA_KEY];
+    }
+    const result = (raw || {}) as any;
+    log("WebIONotebookManager¬getWebIOMetadata:return", !!raw);
+    return result;
   }
 
   private setWebIOMetadata(kernelId: string, commId: string) {
@@ -241,7 +254,15 @@ class WebIONotebookManager {
     if (!this.notebook.model) {
       throw new Error("Notebook model is not available!");
     }
-    (this.notebook.model.metadata as any).set(WEBIO_METADATA_KEY, metadata as any);
+    const meta: any = (this.notebook.model.metadata as any) || {};
+    if (meta && typeof meta.set === "function") {
+      meta.set(WEBIO_METADATA_KEY, metadata as any);
+    } else if (meta) {
+      meta[WEBIO_METADATA_KEY] = metadata as any;
+    } else {
+      // Fallback: replace metadata entirely
+      (this.notebook.model as any).metadata = { [WEBIO_METADATA_KEY]: metadata } as any;
+    }
   }
 }
 
