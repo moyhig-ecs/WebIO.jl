@@ -12,6 +12,13 @@ const externals = Object.fromEntries(
 );
 
 module.exports = {
+  // Ensure webpack mode is explicit to avoid fallback warnings.
+  mode: process.env.NODE_ENV || 'production',
+  // Disable devtool/source maps to avoid source-map-loader parsing issues
+  // for third-party bundles that include invalid sourceMappingURL values.
+  devtool: false,
+  // Suppress noisy source-map-loader warnings originating from dependencies.
+  ignoreWarnings: [/source-map-loader/],
   entry: require('path').resolve(__dirname, 'lib/webio_jupyter_extension/webio-jupyter-labextension/labextension.js'),
   output: {
     filename: "labextension.js",

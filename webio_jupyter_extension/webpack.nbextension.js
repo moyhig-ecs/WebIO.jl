@@ -1,6 +1,13 @@
 const path = require("path");
 
 module.exports = {
+  // Ensure webpack mode is explicit to avoid fallback warnings.
+  mode: process.env.NODE_ENV || 'production',
+  // Disable devtool/source maps to avoid source-map-loader parsing issues
+  // for third-party bundles that include invalid sourceMappingURL values.
+  devtool: false,
+  // Suppress noisy source-map-loader warnings originating from dependencies.
+  ignoreWarnings: [/source-map-loader/],
   entry: "./webio-jupyter-nbextension/nbextension.js",
   output: {
     path: path.resolve(__dirname, 'webio_jupyter_extension/nbextension'),
