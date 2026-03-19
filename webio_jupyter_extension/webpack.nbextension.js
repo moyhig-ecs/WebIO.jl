@@ -17,7 +17,6 @@ module.exports = {
         use: ['source-map-loader'],
         include: [
           path.resolve(__dirname, 'webio-jupyter-nbextension'),
-          path.resolve(__dirname, 'dist'),
           path.resolve(__dirname, '../packages/webio/dist'),
         ],
       },

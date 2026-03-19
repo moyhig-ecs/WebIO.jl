@@ -32,7 +32,6 @@ module.exports = {
         // source maps under node_modules which often contain invalid entries.
         include: [
           path.resolve(__dirname, 'lib'),
-          path.resolve(__dirname, 'dist'),
           path.resolve(__dirname, '../packages/webio/dist'),
         ],
       },
