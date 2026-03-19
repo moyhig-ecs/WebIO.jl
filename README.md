@@ -29,7 +29,7 @@ Web Artifacts
 
 
 ## Important — Release Notes & Quick Install (READ FIRST)
---------------------------------------------------------- > These notes summarize the recent release artifacts and important runtime fixes. Follow the quick install steps below to test locally.
+---------------------------------------------------------
 
 - **PR base:** This branch builds on https://github.com/JuliaGizmos/WebIO.jl/pull/498 and includes additional edits made after commit `eab90`.
 - **Runtime fix (metadata):** We tightened access to `notebook.model.metadata` to avoid runtime errors when metadata is a plain object vs an observable. See `webio_jupyter_extension/webio-jupyter-labextension/labextension.ts` for the exact change.
@@ -40,9 +40,13 @@ Web Artifacts
 - Quick install (from repo root):
 
 ```bash
-pip install webio_jupyter_extension/dist/webio_jupyter_extension-0.1.0-py3-none-any.whl
+# Install directly from this repository (wheel hosted in the branch):
+pip install https://github.com/moyhig-ecs/WebIO.jl/raw/apply-compare-0556c09/webio_jupyter_extension/dist/webio_jupyter_extension-0.1.0-py3-none-any.whl
+
+# Or install from the repository via git (builds from source):
+pip install "git+https://github.com/moyhig-ecs/WebIO.jl.git@apply-compare-0556c09#egg=webio_jupyter_extension"
 ```
 
-- After installing the wheel, the Jupyter extension and the WebIO provider should work locally (tested with the packaged wheel).
+- After installing the wheel or the git package, the Jupyter extension and the WebIO provider should work locally (tested with the packaged wheel).
 
 If you want this wheel attached to a GitHub release or uploaded to PyPI, tell me and I can prepare a release draft and upload the artifact.
