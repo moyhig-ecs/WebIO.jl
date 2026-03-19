@@ -15,7 +15,11 @@ module.exports = {
         test: /\.js$/,
         enforce: 'pre',
         use: ['source-map-loader'],
-        exclude: [/node_modules\/systemjs/],
+        include: [
+          path.resolve(__dirname, 'webio-jupyter-nbextension'),
+          path.resolve(__dirname, 'dist'),
+          path.resolve(__dirname, '../packages/webio/dist'),
+        ],
       },
     ],
   },

@@ -11,6 +11,8 @@ const externals = Object.fromEntries(
   externalModules.map(mod => [mod, `commonjs2 ${mod}`])
 );
 
+const path = require('path');
+
 module.exports = {
   // Ensure webpack mode is explicit to avoid fallback warnings.
   mode: process.env.NODE_ENV || 'production',
@@ -26,7 +28,13 @@ module.exports = {
         test: /\.js$/,
         enforce: 'pre',
         use: ['source-map-loader'],
-        exclude: [/node_modules\/systemjs/],
+        // Only run on our packaged lib/dist files to avoid parsing third-party
+        // source maps under node_modules which often contain invalid entries.
+        include: [
+          path.resolve(__dirname, 'lib'),
+          path.resolve(__dirname, 'dist'),
+          path.resolve(__dirname, '../packages/webio/dist'),
+        ],
       },
     ],
   },
