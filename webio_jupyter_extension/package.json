@@ -23,7 +23,7 @@
     "build:nbextension": "webpack -c webpack.nbextension.js",
     "build:labextension": "jupyter labextension build --source-map false .",
     "build:labextension:dev": "jupyter labextension build --development True --source-map false .",
-    "build:lib": "tsc -p . && webpack -c webpack.labextension.js",
+    "build:lib": "tsc -p . && webpack -c webpack.labextension.js && node scripts/strip-sourcemap.js",
     "clean": "yarn run clean:lib",
     "clean:lib": "rimraf lib dist tsconfig.tsbuildinfo",
     "clean:labextension": "rimraf webio_jupyter_extension/labextension",
