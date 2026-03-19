@@ -26,3 +26,15 @@ This is a non-comprehensive list of projects using WebIO.
 
 Web Artifacts
 [bundle.tar.gz](https://github.com/pankgeorg/WebIO.jl/files/8111257/bundle.tar.gz)
+
+**Notes**
+
+- **PR Reference:** This branch includes changes based on https://github.com/JuliaGizmos/WebIO.jl/pull/498 and additional edits made after commit `eab90`.
+- **Metadata handling:** The JupyterLab extension tightened how `notebook.model.metadata` is accessed; see `webio_jupyter_extension/webio-jupyter-labextension/labextension.ts` for the stricter retrieval logic.
+- **Prebuilt wheel:** A prebuilt wheel is included at `webio_jupyter_extension/dist/webio_jupyter_extension-0.1.0-py3-none-any.whl`. You can install it locally with:
+
+```bash
+pip install webio_jupyter_extension/dist/webio_jupyter_extension-0.1.0-py3-none-any.whl
+```
+
+The wheel file has been added to the repository under `webio_jupyter_extension/dist/` and uploaded to the remote so it can be downloaded from the repository.
