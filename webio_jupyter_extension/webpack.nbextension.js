@@ -7,7 +7,18 @@ module.exports = {
   // for third-party bundles that include invalid sourceMappingURL values.
   devtool: false,
   // Suppress noisy source-map-loader warnings originating from dependencies.
-  ignoreWarnings: [/source-map-loader/],
+  // Ignore parse failures coming from dependencies' source maps (e.g. systemjs).
+  ignoreWarnings: [/Failed to parse source map/, /source-map-loader/],
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        enforce: 'pre',
+        use: ['source-map-loader'],
+        exclude: [/node_modules\/systemjs/],
+      },
+    ],
+  },
   entry: "./webio-jupyter-nbextension/nbextension.js",
   output: {
     path: path.resolve(__dirname, 'webio_jupyter_extension/nbextension'),
