@@ -27,14 +27,22 @@ This is a non-comprehensive list of projects using WebIO.
 Web Artifacts
 [bundle.tar.gz](https://github.com/pankgeorg/WebIO.jl/files/8111257/bundle.tar.gz)
 
-**Notes**
 
-- **PR Reference:** This branch includes changes based on https://github.com/JuliaGizmos/WebIO.jl/pull/498 and additional edits made after commit `eab90`.
-- **Metadata handling:** The JupyterLab extension tightened how `notebook.model.metadata` is accessed; see `webio_jupyter_extension/webio-jupyter-labextension/labextension.ts` for the stricter retrieval logic.
-- **Prebuilt wheel:** A prebuilt wheel is included at `webio_jupyter_extension/dist/webio_jupyter_extension-0.1.0-py3-none-any.whl`. You can install it locally with:
+## Important — Release Notes & Quick Install (READ FIRST)
+--------------------------------------------------------- > These notes summarize the recent release artifacts and important runtime fixes. Follow the quick install steps below to test locally.
+
+- **PR base:** This branch builds on https://github.com/JuliaGizmos/WebIO.jl/pull/498 and includes additional edits made after commit `eab90`.
+- **Runtime fix (metadata):** We tightened access to `notebook.model.metadata` to avoid runtime errors when metadata is a plain object vs an observable. See `webio_jupyter_extension/webio-jupyter-labextension/labextension.ts` for the exact change.
+- **Prebuilt wheel included:** A prebuilt wheel was produced and uploaded to the repository at:
+
+- `webio_jupyter_extension/dist/webio_jupyter_extension-0.1.0-py3-none-any.whl`
+
+- Quick install (from repo root):
 
 ```bash
 pip install webio_jupyter_extension/dist/webio_jupyter_extension-0.1.0-py3-none-any.whl
 ```
 
-The wheel file has been added to the repository under `webio_jupyter_extension/dist/` and uploaded to the remote so it can be downloaded from the repository.
+- After installing the wheel, the Jupyter extension and the WebIO provider should work locally (tested with the packaged wheel).
+
+If you want this wheel attached to a GitHub release or uploaded to PyPI, tell me and I can prepare a release draft and upload the artifact.
