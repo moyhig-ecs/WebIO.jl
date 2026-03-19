@@ -50,3 +50,9 @@ pip install "git+https://github.com/moyhig-ecs/WebIO.jl.git@apply-compare-0556c0
 - After installing the wheel or the git package, the Jupyter extension and the WebIO provider should work locally (tested with the packaged wheel).
 
 If you want this wheel attached to a GitHub release or uploaded to PyPI, tell me and I can prepare a release draft and upload the artifact.
+
+## Compare with upstream
+
+View the changes in this work branch compared to the upstream repository:
+
+[Compare JuliaGizmos/WebIO.jl (master) ⇢ moyhig-ecs/apply-compare-0556c09](https://github.com/JuliaGizmos/WebIO.jl/compare/master...moyhig-ecs:apply-compare-0556c09)
